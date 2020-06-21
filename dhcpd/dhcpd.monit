@@ -1,0 +1,3 @@
+check process dhcpd with pidfile /run/dhcp/dhcpd.pid
+start program = "/usr/sbin/dhcpd -4"
+stop program = "/usr/bin/pkill -x /usr/sbin/dhcpd"
