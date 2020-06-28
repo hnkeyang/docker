@@ -3,8 +3,8 @@ frr 7.0 ubuntu docker base on [FRRouting/frr/docker/debian](https://github.com/F
 
 # Build
 ```
-git clone https://github.com/hnkeyang/frr-docker.git  
-cd frr-docker  
+git clone https://github.com/hnkeyang/docker-hnkeyang.git
+cd docker-hnkeyang/frr
 docker build .  
 
 ```
