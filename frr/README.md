@@ -16,6 +16,6 @@ docker pull hnkeyang/frr
 
 # Run
 ```
-docker run -t -d --name frr --privileged --restart=always frr
+docker run -itd --privileged --name frr hnkeyang/frr:latest
 docker exec -it frr vtysh
 ```
