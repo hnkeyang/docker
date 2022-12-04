@@ -11,5 +11,6 @@ RUN chmod +x /bin/tcp_mss_serv
 RUN apk add tmux
 RUN apk add busybox-extras
 RUN apk add libc6-compat
+RUN apk add tcpreplay --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --allow-untrusted
 COPY tcp_mss_http /bin/tcp_mss_http
 RUN chmod +x /bin/tcp_mss_http
