@@ -148,6 +148,15 @@ def status():
     else:
         return "0"
 
+@route('/del_pcap/<pcap_name>')
+def status(pcap_name):
+    pcap_file_path = "pcap/%s" % pcap_name
+
+    print(pcap_file_path)
+    os.remove(pcap_file_path)
+
+    return "ok"
+
 @route('/t')
 def status():
     return get_nic_tx_total_byte("veth0")
@@ -155,4 +164,3 @@ def status():
 if __name__ == '__main__':
     stop_tcpreplay()
     run(host='0.0.0.0', port=80, debug=True, reloader=True)
-

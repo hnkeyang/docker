@@ -58,6 +58,26 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
+  $("#btn_del_pcap").click(function(){
+      let pcap_file = $("#sel_del_pcap").val();
+
+      let url = "/del_pcap/";
+      url += pcap_file;
+      
+      $.get(url,function(data, status){
+        if (status == "success")
+        {
+          let pos = "#sel_del_pcap option[value=\'" + pcap_file + "\']";
+          $(pos).remove();
+          alert(pcap_file + " 删除成功");
+        }
+      });
+  });
+});
+
+
+// 状态
+$(document).ready(function(){
   let last_tx_total_byte = 0;
   let bps = 0;
   let status = "未发包"
@@ -80,22 +100,3 @@ $(document).ready(function(){
       
   },3000);
 });
-
-/*
-$(document).ready(function(){
-  let last_tx_total_byte = 0;
-  let bps = 0;
-  setInterval(function(){
-      let url = "/get_nic_tx_total_byte";
-      $.get(url,function(data, status){
-          //alert("rx: " + data);
-          if (last_tx_total_byte != 0) {
-            bps = (parseInt(data) - last_tx_total_byte) * 8 / 3/1024/1024;
-            $("#bps_span").html(bps.toFixed(2));
-          }
-          last_tx_total_byte = parseInt(data)
-      });
-      
-  },3000);
-});
-*/

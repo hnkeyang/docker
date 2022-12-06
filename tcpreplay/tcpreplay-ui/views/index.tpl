@@ -6,12 +6,22 @@
 </head>
 <body>
 
-    上传 PCAP>
+    上传 pcap>
     <form action="upload"method="POST" enctype="multipart/form-data">
         <input type="file"name="data" />
         <input type="submit"value="Upload" />
     </form>
 
+    删除 pcap:
+    <select id="sel_del_pcap">
+    % for item in file_list:
+      <option value="{{item}}">{{item}}</option>
+    % end
+    </select>
+    <button id="btn_del_pcap">删除</button>
+
+    <br/>
+    <br/>
     <br/>
 
     发包控制><br/>
