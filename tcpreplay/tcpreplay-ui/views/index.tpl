@@ -3,13 +3,14 @@
 <title>tcpreply</title>
 <script src="/static/jquery-3.6.1.min.js"></script>
 <script src="/static/index.js"></script>
+<script src="/static/echarts.min.js"></script>
 </head>
 <body>
 
     上传 pcap>
     <form action="upload"method="POST" enctype="multipart/form-data">
         <input type="file"name="data" />
-        <input type="submit"value="Upload" />
+        <input type="submit"value="上传" />
     </form>
 
     删除 pcap:
@@ -55,5 +56,7 @@
     运行状态：<span id="status_span">未发包</span> <br/>
     带宽 mbit/s：<span id="bps_span">0</span> <br/>
 
+    <br/>
+    <div id="div_bps_chart" style="width: 1000px;height:400px;"></div>
 </body>
 </html>

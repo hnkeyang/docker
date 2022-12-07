@@ -39,7 +39,8 @@ $(document).ready(function(){
         url += dst_mac;
         
         $.get(url,function(data, status){
-          alert("状态: " + data);
+          //alert("状态: " + data);
+          alert("开始发包");
         });
 
         
@@ -52,7 +53,8 @@ $(document).ready(function(){
         let url = "/ctrl/stop";
         
         $.get(url,function(data, status){
-          alert("状态: " + data);
+          //alert("状态: " + data);
+          alert("停止发包");
         });
     });
 });
@@ -81,6 +83,26 @@ $(document).ready(function(){
   let last_tx_total_byte = 0;
   let bps = 0;
   let status = "未发包"
+
+  var bpsChart = echarts.init(document.getElementById('div_bps_chart'));
+  var option = {
+    xAxis: {
+      data: [] // label
+    },
+    yAxis: {},
+    series: [
+      {
+        data: [], // data
+        type: 'line',
+        smooth: true
+      }
+    ]
+  };
+
+  let n = 1;
+  let base = 0;
+  let count = 5;
+
   setInterval(function(){
       let url = "/status";
       $.getJSON(url,function(data){
@@ -94,6 +116,21 @@ $(document).ready(function(){
           if (last_tx_total_byte != 0) {
             bps = (data.tx_total_byte - last_tx_total_byte) * 8 / 3/1024/1024;
             $("#bps_span").html(bps.toFixed(2));
+
+            
+            option["xAxis"]["data"].push(n);
+            option["series"][0]["data"].push(bps);
+            console.log(n, base, count);
+            if (n - base > count)
+            {
+              base += 1;
+              option["xAxis"]["data"].shift();
+              option["series"][0]["data"].shift();
+            }
+
+            bpsChart.setOption(option);
+
+            n++;
           }
           last_tx_total_byte = data.tx_total_byte
       });
